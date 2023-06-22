@@ -1,6 +1,6 @@
 {
-  "short_name": "11ty Starter Lite",
-  "name": "Eleventy Starter Lite",
+  "short_name": "Roll Initiative",
+  "name": "Roll Initiative",
   "icons": [
     {
       "src": "favicon.svg",
@@ -21,8 +21,8 @@
   ],
   "start_url": "/",
   "background_color": "#1a1a1a",
-  "display": "browser",
+  "display": "standalone",
   "scope": "/",
   "theme_color": "#1a1a1a",
-  "description": "A minimal starter template for creating websites using Eleventy."
+  "description": "A set of tools for GMs to manage their role-playing game stats and statuses."
 }

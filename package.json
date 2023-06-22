@@ -1,9 +1,9 @@
 {
-  "name": "eleventy-starter-lite",
+  "name": "roll-initiative",
   "version": "0.1.0",
   "description": "",
   "main": "index.js",
-  "author": "",
+  "author": "Dustin Whisman",
   "license": "ISC",
   "engines": {
     "node": ">=18"
