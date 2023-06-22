@@ -1,9 +1,7 @@
 ---
-title: Home
-description: This is the home page.
+title: Roll Initiative
+description: A set of tools for GMs to manage their role-playing game stats and statuses.
 layout: default
 ---
 
-# Home Page
-
-This is the home page.
+# Roll Initiative
