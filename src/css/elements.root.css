@@ -1,0 +1,15 @@
+:root {
+  --c-brand: hsl(7deg 71% 51%);
+  --ink: hsl(228deg 6% 6%);
+  --paper: hsl(37deg 26% 88%);
+
+  background-color: var(--paper);
+  color: var(--ink);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --ink: hsl(37deg 26% 88%);
+    --paper: hsl(228deg 6% 6%);
+  }
+}
