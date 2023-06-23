@@ -20,9 +20,9 @@
     }
   ],
   "start_url": "/",
-  "background_color": "#1a1a1a",
+  "background_color": "#03081b",
   "display": "standalone",
   "scope": "/",
-  "theme_color": "#1a1a1a",
+  "theme_color": "#03081b",
   "description": "A set of tools for GMs to manage their role-playing game stats and statuses."
 }
