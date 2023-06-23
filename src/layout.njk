@@ -23,9 +23,7 @@
     <link rel="stylesheet" href="/styles.css">
   </head>
   <body>
-    {% block header %}
-      {% include 'partials/header.njk' %}
-    {% endblock %}
+    {% block header %}{% endblock %}
     <main id="main-content">
       {% block content %}
         {{ content | safe }}
