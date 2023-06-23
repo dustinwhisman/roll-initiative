@@ -1,0 +1,23 @@
+label {
+  display: block;
+  margin-block-end: 0.25em;
+}
+
+input[type='text'],
+button {
+  box-sizing: border-box;
+  background-color: var(--paper);
+  color: var(--ink);
+  border: 1px solid var(--ink);
+  border-radius: 0.25rem;
+  padding: 0.5rem;
+}
+
+input[type='text'] {
+  width: 100%;
+}
+
+button {
+  padding-inline: 1rem;
+  box-shadow: 0.25rem 0.25rem 0 0 var(--shadow);
+}
