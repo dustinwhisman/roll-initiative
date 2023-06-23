@@ -35,6 +35,10 @@ const resetErrorState = (input) => {
   input.removeAttribute('aria-describedby');
 };
 
+const clearInput = (input) => {
+  input.value = '';
+};
+
 const showErrorMessages = (errorList, formName, containerSelector) => {
   const ul = document.createElement('ul');
   ul.id = `${formName}-errors`;
@@ -57,38 +61,51 @@ const showErrorMessages = (errorList, formName, containerSelector) => {
   ul.focus();
 };
 
-const setInitiativeOrder = ({ initiative, characterName }) => {
+const getCurrentInitiativeOrder = () => {
   let initiativeOrder;
   const rawInitiativeOrder = localStorage.getItem('initiative-order');
   if (rawInitiativeOrder) {
     initiativeOrder = JSON.parse(rawInitiativeOrder);
-    initiativeOrder = [
-      ...initiativeOrder,
-      {
-        initiative,
-        characterName,
-      },
-    ].sort((a, b) => {
-      if (a.initiative > b.initiative) {
-        return -1;
-      }
-
-      if (a.initiative < b.initiative) {
-        return 1;
-      }
-
-      return 0;
-    });
-  } else {
-    initiativeOrder = [
-      {
-        initiative,
-        characterName,
-      },
-    ];
+    return initiativeOrder;
   }
 
+  return [];
+};
+
+const sortInitiative = (a, b) => {
+  if (a.initiative > b.initiative) {
+    return -1;
+  }
+
+  if (a.initiative < b.initiative) {
+    return 1;
+  }
+
+  return 0;
+};
+
+const setInitiativeOrder = ({ initiative, characterName }) => {
+  const initiativeOrder = [
+    ...getCurrentInitiativeOrder(),
+    {
+      initiative,
+      characterName,
+    },
+  ].sort(sortInitiative);
+
   localStorage.setItem('initiative-order', JSON.stringify(initiativeOrder));
+};
+
+const removeFromInitiative = ({ initiative, characterName }) => {
+  const initiativeOrder = getCurrentInitiativeOrder();
+  const itemToRemoveIndex = initiativeOrder.findIndex(
+    (item) =>
+      item.initiative === initiative && item.characterName === characterName,
+  );
+  if (itemToRemoveIndex > -1) {
+    initiativeOrder.splice(itemToRemoveIndex, 1);
+    localStorage.setItem('initiative-order', JSON.stringify(initiativeOrder));
+  }
 };
 
 const bindInitiativeFormListener = () => {
@@ -138,11 +155,25 @@ const bindInitiativeFormListener = () => {
     }
 
     setInitiativeOrder({ initiative, characterName });
+    clearInput(initiativeInput);
+    clearInput(characterNameInput);
     renderInitiativeOrder(true);
+  });
+};
+
+const bindDeleteButtonEventListener = () => {
+  document.addEventListener('click', (event) => {
+    if (event.target.matches('.cmp-initiative__delete')) {
+      const initiative = Number.parseInt(event.target.dataset.initiative, 10);
+      const characterName = event.target.dataset.characterName;
+      removeFromInitiative({ initiative, characterName });
+      renderInitiativeOrder(true);
+    }
   });
 };
 
 (() => {
   bindInitiativeFormListener();
+  bindDeleteButtonEventListener();
   renderInitiativeOrder();
 })();
