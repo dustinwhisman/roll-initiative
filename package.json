@@ -9,8 +9,15 @@
     "node": ">=18"
   },
   "scripts": {
-    "start": "rm -rf dist && eleventy --serve --incremental",
-    "build": "rm -rf dist && eleventy",
+    "clean": "rm -rf dist",
+    "prestart": "npm run clean",
+    "prebuild": "npm run clean",
+    "start": "run-p eleventy:dev js:dev",
+    "build": "run-s eleventy:build js:build",
+    "eleventy:dev": "eleventy --serve --incremental",
+    "eleventy:build": "eleventy",
+    "js:dev": "esbuild src/js/main.js --format=esm --bundle=true --splitting=true --outdir=dist --watch --sourcemap=inline",
+    "js:build": "esbuild src/js/main.js --format=esm --bundle=true --splitting=true --outdir=dist --minify=true",
     "lint": "npm run lint:css && npm run lint:js",
     "lint:css": "stylelint \"src/**/*.{css,scss,sass}\" --color --formatter verbose",
     "lint:js": "DEBUG=eslint:cli-engine eslint .",

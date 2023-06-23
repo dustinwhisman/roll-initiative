@@ -1,4 +1,6 @@
-const renderInitiativeOrder = (focusOnUpdate = false) => {
+import { resetErrorState, clearInput, showErrorMessages } from './forms.js';
+
+export const renderInitiativeOrder = (focusOnUpdate = false) => {
   let initiativeOrder = [];
   const rawInitiativeOrder = localStorage.getItem('initiative-order');
   if (rawInitiativeOrder) {
@@ -28,37 +30,6 @@ const renderInitiativeOrder = (focusOnUpdate = false) => {
       initiativeList.focus();
     }
   }
-};
-
-const resetErrorState = (input) => {
-  input.removeAttribute('aria-invalid');
-  input.removeAttribute('aria-describedby');
-};
-
-const clearInput = (input) => {
-  input.value = '';
-};
-
-const showErrorMessages = (errorList, formName, containerSelector) => {
-  const ul = document.createElement('ul');
-  ul.id = `${formName}-errors`;
-  ul.setAttribute('tabindex', '-1');
-  ul.classList.add('cmp-error-list');
-
-  errorList.forEach((error) => {
-    const li = document.createElement('li');
-    li.id = `${error.fieldName}-field-error`;
-    li.textContent = error.message;
-    ul.appendChild(li);
-
-    const input = document.querySelector(`[name="${error.fieldName}"]`);
-    input?.setAttribute('aria-invalid', 'true');
-    input?.setAttribute('aria-describedby', `${error.fieldName}-field-error`);
-  });
-
-  const container = document.querySelector(containerSelector);
-  container?.prepend(ul);
-  ul.focus();
 };
 
 const getCurrentInitiativeOrder = () => {
@@ -108,7 +79,7 @@ const removeFromInitiative = ({ initiative, characterName }) => {
   }
 };
 
-const bindInitiativeFormListener = () => {
+export const bindInitiativeFormListener = () => {
   const initiativeForm = document.querySelector('.cmp-initiative__form');
   initiativeForm?.addEventListener('submit', (event) => {
     event.preventDefault();
@@ -161,7 +132,7 @@ const bindInitiativeFormListener = () => {
   });
 };
 
-const bindDeleteButtonEventListener = () => {
+export const bindRemoveFromInitiativeButtonEventListener = () => {
   document.addEventListener('click', (event) => {
     if (event.target.matches('.cmp-initiative__delete')) {
       const initiative = Number.parseInt(event.target.dataset.initiative, 10);
@@ -171,9 +142,3 @@ const bindDeleteButtonEventListener = () => {
     }
   });
 };
-
-(() => {
-  bindInitiativeFormListener();
-  bindDeleteButtonEventListener();
-  renderInitiativeOrder();
-})();
