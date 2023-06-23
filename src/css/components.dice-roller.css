@@ -1,0 +1,14 @@
+.cmp-dice-roller__container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding-inline: calc(0.5rem + 1cqi);
+  container-type: inline-size;
+}
+
+.cmp-dice-roller__form {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 1rem;
+  align-items: end;
+}

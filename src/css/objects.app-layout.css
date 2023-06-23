@@ -1,0 +1,39 @@
+.obj-app-layout__container {
+  container-type: inline-size;
+}
+
+.obj-app-layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-areas:
+    'heading'
+    'initiative'
+    'dice-roller';
+  gap: 1rem;
+}
+
+@container (min-width: 36rem) {
+  .obj-app-layout {
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+      'heading heading'
+      'initiative dice-roller';
+  }
+}
+
+.obj-app-layout__heading {
+  grid-area: heading;
+  padding-inline: calc(0.5rem + 1cqi);
+}
+
+.obj-app-layout__heading h1 {
+  margin-block: 0.5rem 0;
+}
+
+.obj-app-layout__initiative {
+  grid-area: initiative;
+}
+
+.obj-app-layout__dice-roller {
+  grid-area: dice-roller;
+}

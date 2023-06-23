@@ -6,9 +6,20 @@ description: A set of tools for GMs to manage their role-playing game stats and 
 {% extends "layout.njk" %}
 
 {% block content %}
-<h1 class="cmp-main-heading">Roll Initiative</h1>
+<div class="obj-app-layout__container">
+  <div class="obj-app-layout">
+    <div class="obj-app-layout__heading">
+      <h1>Roll Initiative</h1>
+    </div>
 
-{% include "partials/initiative.njk" %}
+    <div class="obj-app-layout__initiative">
+      {% include "partials/initiative.njk" %}
+    </div>
+    <div class="obj-app-layout__dice-roller">
+      {% include "partials/dice-roller.njk" %}
+    </div>
+  </div>
+</div>
 {% endblock %}
 
 {% block scripts %}
