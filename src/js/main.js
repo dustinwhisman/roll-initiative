@@ -1,3 +1,4 @@
+import { bindDiceRollerFormListener } from './dice-roller.js';
 import {
   bindInitiativeFormListener,
   bindRemoveFromInitiativeButtonEventListener,
@@ -8,4 +9,6 @@ import {
   bindInitiativeFormListener();
   bindRemoveFromInitiativeButtonEventListener();
   renderInitiativeOrder();
+
+  bindDiceRollerFormListener();
 })();
