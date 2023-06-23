@@ -117,6 +117,16 @@ const bindInitiativeFormListener = () => {
 
     const errorList = [];
 
+    const characterNameInput = event.target.elements['character-name'];
+    resetErrorState(characterNameInput);
+    const characterName = characterNameInput.value;
+    if (!characterName) {
+      errorList.push({
+        fieldName: 'character-name',
+        message: 'Name is required.',
+      });
+    }
+
     const initiativeInput = event.target.elements.initiative;
     resetErrorState(initiativeInput);
     const rawInitiative = initiativeInput.value;
@@ -132,16 +142,6 @@ const bindInitiativeFormListener = () => {
       errorList.push({
         fieldName: 'initiative',
         message: 'Initiative must be a number.',
-      });
-    }
-
-    const characterNameInput = event.target.elements['character-name'];
-    resetErrorState(characterNameInput);
-    const characterName = characterNameInput.value;
-    if (!characterName) {
-      errorList.push({
-        fieldName: 'character-name',
-        message: 'Name is required.',
       });
     }
 
