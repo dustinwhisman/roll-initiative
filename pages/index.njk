@@ -8,29 +8,9 @@ description: A set of tools for GMs to manage their role-playing game stats and 
 {% block content %}
 <h1>Roll Initiative</h1>
 
-<div class="cmp-initiative__container">
-  <form class="cmp-initiative__form">
-    <div class="cmp-initiative__set-initiative">
-      <label for="initiative">Initiative</label>
-      <input id="initiative" type="text" inputmode="numeric" pattern="[0-9]*" required aria-required="true">
-    </div>
-    <div class="cmp-initiative__set-name">
-      <label for="character-name">Name</label>
-      <input id="character-name" type="text" required aria-required="true">
-    </div>
-    <button type="submit" class="cmp-initiative__add">Add to Initiative</button>
-  </form>
-  <ol class="cmp-initiative__list" reversed>
-    <li value="23">
-      <div class="cmp-initiative__list-item">
-        <span class="cmp-initiative__name">
-          PC Name
-        </span>
-        <button type="button" class="cmp-initiative__delete">
-          Delete
-        </button>
-      </div>
-    </li>
-  </ol>
-</div>
+{% include "partials/initiative.njk" %}
+{% endblock %}
+
+{% block scripts %}
+<script src="/main-script.js"></script>
 {% endblock %}
